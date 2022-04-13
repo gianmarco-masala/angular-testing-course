@@ -1,6 +1,6 @@
-import { TestBed } from "@angular/core/testing";
-import { CalculatorService } from "./calculator.service";
-import { LoggerService } from "./logger.service";
+import { TestBed } from '@angular/core/testing';
+import { CalculatorService } from './calculator.service';
+import { LoggerService } from './logger.service';
 
 describe('CalculatorService', () => {
     let calculator: CalculatorService;
@@ -8,7 +8,7 @@ describe('CalculatorService', () => {
 
     beforeEach(() => {
         // Only the service itself has to be actually instanciated.
-        // All the other service's dependencies must be mocked by creating a spy obj, 
+        // All the other service's dependencies must be mocked by creating a spy obj,
         // and adding inside the providers array like below.
         loggerSpy = jasmine.createSpyObj('LoggerService', ['log']);
 

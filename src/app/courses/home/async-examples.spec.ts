@@ -1,8 +1,8 @@
-import { fakeAsync, flush, flushMicrotasks, tick } from "@angular/core/testing";
-import { of } from "rxjs";
-import { delay } from "rxjs/operators";
+import { fakeAsync, flush, flushMicrotasks, tick } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
-// For components that internally use browser async operations such as setTimeout, setInterval and so on. 
+// For components that internally use browser async operations such as setTimeout, setInterval and so on.
 describe('Async Testing Examples', () => {
     it('Async test example with Jasmine done()', (done: DoneFn) => {
         let test = false;

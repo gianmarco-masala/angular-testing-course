@@ -1,17 +1,12 @@
-import { async, ComponentFixture, fakeAsync, flush, flushMicrotasks, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed, waitForAsync } from '@angular/core/testing';
 import { CoursesModule } from '../courses.module';
 import { DebugElement } from '@angular/core';
-
 import { HomeComponent } from './home.component';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { CoursesService } from '../services/courses.service';
-import { HttpClient } from '@angular/common/http';
-import { COURSES } from '../../../../server/db-data';
 import { setupCourses } from '../common/setup-test-data';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { click } from '../common/test-utils';
 
 // DYNAMIC COMPONENT which retrieves its data using a service involving async calls.
 describe('HomeComponent', () => {
@@ -24,7 +19,7 @@ describe('HomeComponent', () => {
   const advancedCourses = setupCourses().filter(course => course.category === 'ADVANCED');
 
   beforeEach(waitForAsync(() => {
-    const coursesServiceSpy = jasmine.createSpyObj('CoursesService', ['findAllCourses'])
+    const coursesServiceSpy = jasmine.createSpyObj('CoursesService', ['findAllCourses']);
 
     TestBed.configureTestingModule({
       imports: [
@@ -44,12 +39,12 @@ describe('HomeComponent', () => {
       });
   }));
 
-  it("should create the component", () => {
+  it('should create the component', () => {
     expect(component).toBeTruthy();
   });
 
 
-  it("should display only beginner courses", () => {
+  it('should display only beginner courses', () => {
     coursesService.findAllCourses.and.returnValue(of(beginnerCourses));
 
     fixture.detectChanges();
@@ -59,7 +54,7 @@ describe('HomeComponent', () => {
   });
 
 
-  it("should display only advanced courses", () => {
+  it('should display only advanced courses', () => {
     coursesService.findAllCourses.and.returnValue(of(advancedCourses));
     fixture.detectChanges();
 
@@ -68,7 +63,7 @@ describe('HomeComponent', () => {
   });
 
 
-  it("should display both tabs", () => {
+  it('should display both tabs', () => {
     coursesService.findAllCourses.and.returnValue(of(setupCourses()));
     fixture.detectChanges();
 
@@ -77,7 +72,7 @@ describe('HomeComponent', () => {
   });
 
   // Use fakeAsync for unit tests in which we don't need to make a real API call
-  it("should display advanced courses when tab clicked - fakeAsync", fakeAsync(() => {
+  it('should display advanced courses when tab clicked - fakeAsync', fakeAsync(() => {
     coursesService.findAllCourses.and.returnValue(of(setupCourses()));
     fixture.detectChanges();
 
@@ -103,7 +98,7 @@ describe('HomeComponent', () => {
 
   // Use waitForAsync ONLY for integration tests in which real API calls have to be made
   // (this is failing, not sure why)
-  xit("should display advanced courses when tab clicked - waitForAsync", waitForAsync(() => {
+  xit('should display advanced courses when tab clicked - waitForAsync', waitForAsync(() => {
     coursesService.findAllCourses.and.returnValue(of(setupCourses()));
     fixture.detectChanges();
 
